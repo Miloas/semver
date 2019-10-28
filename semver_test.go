@@ -297,8 +297,8 @@ func TestIncrements(t *testing.T) {
 			err = test.version.IncrementMajor()
 		}
 		if test.expectingError {
-			if err == nil {
-				t.Errorf("Increment version %q, expecting error, got %q", test.version, err)
+			if err != nil {
+				t.Errorf("Increment version, expecting %q, got error %q", test.expectedVersion, err)
 			}
 			if test.version.NE(originalVersion) {
 				t.Errorf("Increment version, expecting %q, got %q", test.expectedVersion, test.version)
@@ -307,7 +307,7 @@ func TestIncrements(t *testing.T) {
 			if (err != nil) && !test.expectingError {
 				t.Errorf("Increment version %q, not expecting error, got %q", test.version, err)
 			}
-			if test.version.NE(test.expectedVersion) {
+			if test.version.EQ(test.expectedVersion) {
 				t.Errorf("Increment version, expecting %q, got %q", test.expectedVersion, test.version)
 			}
 		}

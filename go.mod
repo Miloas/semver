@@ -1,1 +1,1 @@
-module github.com/blang/semver
+module github.com/Miloas/semver
